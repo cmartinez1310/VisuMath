@@ -1,0 +1,1016 @@
+/* =========================================
+   VISUMATH
+   Donde tus gestos se convierten en matemáticas
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(0, 200, 255, 0.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(150, 70, 255, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255, 50, 180, 0.10),
+            transparent 35%
+        ),
+        #07152f;
+
+    overflow-x: hidden;
+}
+
+
+/* ESTRELLAS */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            rgba(255,255,255,0.7) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        90px 90px,
+        140px 140px;
+
+    background-position:
+        10px 20px,
+        50px 70px;
+
+    opacity: 0.25;
+
+    z-index: -1;
+}
+
+
+/* =========================================
+   ENCABEZADO
+========================================= */
+
+.encabezado {
+
+    margin: 20px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(8, 24, 55, 0.85);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
+}
+
+
+.logo h1 {
+
+    font-size: 36px;
+
+    letter-spacing: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #48dfff,
+            #a76cff,
+            #ff69c7
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+
+.logo p {
+
+    margin-top: 6px;
+
+    color: #b8c9e8;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.contenedor {
+
+    display: grid;
+
+    grid-template-columns:
+        270px
+        minmax(400px, 1fr)
+        330px;
+
+    gap: 18px;
+
+    padding:
+        0 20px 20px;
+}
+
+
+/* =========================================
+   PANELES
+========================================= */
+
+.panel {
+
+    position: relative;
+
+    background:
+        rgba(8, 24, 55, 0.88);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.25);
+
+    overflow: hidden;
+}
+
+
+.panel::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #48dfff,
+            #9d6cff,
+            #ff69c7
+        );
+}
+
+
+/* =========================================
+   FUNCIÓN
+========================================= */
+
+.funcion h2 {
+
+    font-size: 18px;
+
+    margin-bottom: 12px;
+}
+
+
+#funcion {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+
+#funcion::placeholder {
+
+    color: #8294b5;
+}
+
+
+#funcion:focus {
+
+    border-color: #48dfff;
+
+    box-shadow:
+        0 0 12px rgba(72,223,255,0.18);
+}
+
+
+/* =========================================
+   TECLADO MATEMÁTICO
+========================================= */
+
+.teclado-matematico {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 6px;
+
+    margin-top: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.teclado-matematico button {
+
+    min-height: 34px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        0.15s ease;
+}
+
+
+.teclado-matematico button:hover {
+
+    background:
+        rgba(72,223,255,0.25);
+
+    transform:
+        translateY(-1px);
+}
+
+
+.teclado-matematico button:active {
+
+    transform:
+        scale(0.94);
+}
+
+
+#borrarCaracter {
+
+    background:
+        rgba(255,105,199,0.18);
+}
+
+
+#borrarTodo {
+
+    background:
+        rgba(255,80,100,0.22);
+}
+
+
+/* =========================================
+   BOTONES
+========================================= */
+
+#aceptar {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #159cc4,
+            #7655d9
+        );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+#aceptar:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(72,223,255,0.18);
+}
+
+
+/* =========================================
+   INFORMACIÓN
+========================================= */
+
+.informacion {
+
+    margin-top: 18px;
+}
+
+
+.informacion p {
+
+    padding: 6px 0;
+
+    color: #dce8ff;
+
+    font-size: 14px;
+}
+
+
+.puntos-leyenda {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+
+.punto {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+}
+
+
+.punto.azul {
+    background: #48dfff;
+}
+
+
+.punto.verde {
+    background: #48e890;
+}
+
+
+.punto.morado {
+    background: #a76cff;
+}
+
+
+/* =========================================
+   MENÚ
+========================================= */
+
+.menu {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+
+.menu button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 11px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: #dce8ff;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.menu button:hover,
+.menu button.activo {
+
+    background:
+        rgba(72,223,255,0.14);
+
+    color: white;
+}
+
+
+/* =========================================
+   GRÁFICA
+========================================= */
+
+.grafica {
+
+    min-width: 0;
+
+    padding: 10px;
+}
+
+
+#grafica {
+
+    width: 100%;
+
+    height: 450px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   CÁMARA
+========================================= */
+
+.marco-camara {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 225px;
+
+    background:
+        #020916;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(72,223,255,0.18);
+}
+
+
+#videoCamara {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transform:
+        scaleX(-1);
+}
+
+
+.etiqueta {
+
+    position: absolute;
+
+    left: 10px;
+    bottom: 10px;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(0,0,0,0.6);
+
+    font-size: 12px;
+
+    color: #9feaff;
+}
+
+
+.datos-camara {
+
+    margin-top: 12px;
+}
+
+
+.dato {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 8px 0;
+
+    font-size: 13px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.06);
+}
+
+
+.dato span {
+
+    color: #8fa3c7;
+}
+
+
+.dato strong {
+
+    color: #48dfff;
+
+    text-align: right;
+}
+
+
+/* =========================================
+   RESULTADO
+========================================= */
+
+.resultado {
+
+    margin-top: 18px;
+
+    min-height: 150px;
+}
+
+
+.resultado-titulo {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    color: #ffffff;
+}
+
+
+.resultado-info {
+
+    color: #c9d7ef;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+
+.resultado-info strong {
+
+    color: #48dfff;
+}
+
+
+/* =========================================
+   EVALUAR PUNTO
+========================================= */
+
+.evaluar {
+
+    margin-top: 18px;
+}
+
+
+#valorX {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: white;
+
+    outline: none;
+
+    margin-bottom: 8px;
+}
+
+
+#evaluarPunto {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        rgba(72,223,255,0.15);
+
+    color: #dffaff;
+
+    cursor: pointer;
+}
+
+
+.alerta {
+
+    display: none;
+
+    margin-top: 8px;
+
+    padding: 8px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,70,90,0.14);
+
+    color: #ff9da9;
+
+    font-size: 12px;
+}
+
+
+.alerta.visible {
+
+    display: block;
+}
+
+
+.resultado-punto {
+
+    margin-top: 10px;
+
+    color: #48e890;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   GESTOS
+========================================= */
+
+.gestos {
+
+    margin: 0 20px 20px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(8,24,55,0.80);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+.gestos > h2 {
+
+    text-align: center;
+
+    margin-bottom: 18px;
+
+    font-size: 21px;
+}
+
+
+.gestos-contenedor {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 12px;
+}
+
+
+.gesto {
+
+    min-width: 0;
+
+    padding: 16px;
+
+    border-radius: 16px;
+
+    text-align: center;
+
+    position: relative;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.2s ease;
+}
+
+
+.gesto:hover {
+
+    transform:
+        translateY(-4px);
+}
+
+
+.gesto1 {
+    background: rgba(50,150,255,0.10);
+}
+
+
+.gesto2 {
+    background: rgba(140,90,255,0.10);
+}
+
+
+.gesto3 {
+    background: rgba(50,220,150,0.10);
+}
+
+
+.gesto4 {
+    background: rgba(255,80,180,0.10);
+}
+
+
+.gesto5 {
+    background: rgba(255,170,50,0.10);
+}
+
+
+.numero-gesto {
+
+    position: absolute;
+
+    top: 8px;
+    right: 10px;
+
+    font-size: 12px;
+
+    color: #aebedb;
+}
+
+
+.icono-gesto {
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
+}
+
+
+.gesto h3 {
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+}
+
+
+.gesto h4 {
+
+    font-size: 13px;
+
+    color: #48dfff;
+
+    margin-bottom: 8px;
+}
+
+
+.gesto p {
+
+    color: #aebedb;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+.gesto p strong {
+
+    color: white;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 15px;
+
+    color: #6f83a8;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1150px) {
+
+    .contenedor {
+
+        grid-template-columns:
+            240px
+            minmax(350px, 1fr)
+            300px;
+    }
+
+    .gestos-contenedor {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .contenedor {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .izquierda,
+    .derecha {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 15px;
+    }
+
+    .funcion,
+    .informacion,
+    .camara,
+    .resultado,
+    .evaluar {
+
+        margin-top: 0;
+    }
+
+    .menu {
+
+        grid-column:
+            1 / -1;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .encabezado {
+
+        margin: 10px;
+
+        padding: 15px;
+    }
+
+    .logo h1 {
+
+        font-size: 28px;
+    }
+
+    .contenedor {
+
+        padding:
+            0 10px 10px;
+    }
+
+    .izquierda,
+    .derecha {
+
+        display: block;
+    }
+
+    .informacion,
+    .camara,
+    .resultado,
+    .evaluar {
+
+        margin-top: 12px;
+    }
+
+    .menu {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        margin-top: 12px;
+    }
+
+    .grafica {
+
+        padding: 5px;
+    }
+
+    #grafica {
+
+        height: 380px;
+    }
+
+    .gestos {
+
+        margin:
+            0 10px 10px;
+
+        padding: 15px;
+    }
+
+    .gestos-contenedor {
+
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .teclado-matematico {
+
+        gap: 5px;
+    }
+
+    .teclado-matematico button {
+
+        min-height: 38px;
+
+        font-size: 12px;
+    }
+}

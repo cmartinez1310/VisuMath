@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VisuMath</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="encabezado">
+
+        <div class="logo">
+            <h1>VISUMATH</h1>
+            <p>Donde tus gestos se convierten en matemáticas</p>
+        </div>
+
+    </header>
+
+
+    <main class="contenedor">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <section class="columna izquierda">
+
+            <div class="panel funcion">
+
+                <h2>🧮 Ingresa la función</h2>
+
+                <input
+                    type="text"
+                    id="funcion"
+                    placeholder="Ej: x^2 + 2x"
+                    autocomplete="off"
+                >
+
+                <!-- TECLADO MATEMÁTICO -->
+                <div class="teclado-matematico">
+
+                    <button type="button" data-valor="√(">√</button>
+                    <button type="button" data-valor="ln(">ln</button>
+                    <button type="button" data-valor="e">e</button>
+                    <button type="button" data-valor="π">π</button>
+                    <button type="button" data-valor="^">xⁿ</button>
+
+                    <button type="button" data-valor="sin(">sin</button>
+                    <button type="button" data-valor="cos(">cos</button>
+                    <button type="button" data-valor="tan(">tan</button>
+                    <button type="button" data-valor="(">(</button>
+                    <button type="button" data-valor=")">)</button>
+
+                    <button type="button" data-valor="7">7</button>
+                    <button type="button" data-valor="8">8</button>
+                    <button type="button" data-valor="9">9</button>
+                    <button type="button" data-valor="/">÷</button>
+                    <button type="button" data-valor="*">×</button>
+
+                    <button type="button" data-valor="4">4</button>
+                    <button type="button" data-valor="5">5</button>
+                    <button type="button" data-valor="6">6</button>
+                    <button type="button" data-valor="+">+</button>
+                    <button type="button" data-valor="-">−</button>
+
+                    <button type="button" data-valor="1">1</button>
+                    <button type="button" data-valor="2">2</button>
+                    <button type="button" data-valor="3">3</button>
+                    <button type="button" data-valor=".">.</button>
+                    <button type="button" id="borrarCaracter">⌫</button>
+
+                    <button type="button" data-valor="0">0</button>
+                    <button type="button" data-valor="x">x</button>
+                    <button type="button" id="borrarTodo">C</button>
+
+                </div>
+
+
+                <button id="aceptar">
+                    Aceptar función
+                </button>
+
+            </div>
+
+
+            <div class="panel informacion">
+
+                <p id="fx">f(x) = —</p>
+                <p id="fprima">f'(x) = —</p>
+                <p id="fsegunda">f''(x) = —</p>
+
+                <div class="puntos-leyenda">
+
+                    <span class="punto azul"></span>
+                    <span class="punto verde"></span>
+                    <span class="punto morado"></span>
+
+                </div>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <button id="btnGrafica" class="activo">
+                    📈 Gráfica
+                </button>
+
+                <button id="btnCamara">
+                    📷 Cámara
+                </button>
+
+                <button id="btnInstrucciones">
+                    📖 Instrucciones
+                </button>
+
+                <button id="btnReiniciar">
+                    🔄 Reiniciar
+                </button>
+
+            </nav>
+
+        </section>
+
+
+        <!-- GRÁFICA -->
+        <section class="panel grafica">
+
+            <div id="grafica"></div>
+
+        </section>
+
+
+        <!-- COLUMNA DERECHA -->
+        <section class="columna derecha">
+
+            <div class="panel camara">
+
+                <div id="camara">
+
+                    <div class="marco-camara">
+
+                        <video
+                            id="videoCamara"
+                            autoplay
+                            playsinline>
+                        </video>
+
+                        <div class="etiqueta">
+                            Cámara lista
+                        </div>
+
+                    </div>
+
+
+                    <div class="datos-camara">
+
+                        <div class="dato">
+
+                            <span>
+                                Dedos detectados:
+                            </span>
+
+                            <strong id="dedos">
+                                Esperando gesto
+                            </strong>
+
+                        </div>
+
+
+                        <div class="dato accion">
+
+                            <span>
+                                Acción:
+                            </span>
+
+                            <strong id="accion">
+                                Esperando gesto
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel resultado">
+
+                <div id="resultado">
+
+                    <div class="resultado-titulo">
+                        Resultado
+                    </div>
+
+                    <div class="resultado-info">
+                        Ingresa una función para comenzar.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="panel evaluar">
+
+                <input
+                    type="number"
+                    id="valorX"
+                    placeholder="Valor de x"
+                    step="any"
+                >
+
+                <button id="evaluarPunto">
+                    Evaluar punto
+                </button>
+
+                <div
+                    id="alertaPunto"
+                    class="alerta">
+                </div>
+
+                <div
+                    id="resultadoPunto"
+                    class="resultado-punto">
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- GESTOS -->
+    <section class="gestos">
+
+        <h2>
+            🖐️ Gestos de VisuMath
+        </h2>
+
+
+        <div class="gestos-contenedor">
+
+
+            <article class="gesto gesto1">
+
+                <div class="numero-gesto">
+                    1
+                </div>
+
+                <div class="icono-gesto">
+                    ☝️
+                </div>
+
+                <h3>
+                    Un dedo
+                </h3>
+
+                <h4>
+                    Evaluar punto
+                </h4>
+
+                <p>
+                    Permite seleccionar un valor de
+                    <strong>x</strong> y calcular
+                    <strong>f(x)</strong>.
+                </p>
+
+            </article>
+
+
+            <article class="gesto gesto2">
+
+                <div class="numero-gesto">
+                    2
+                </div>
+
+                <div class="icono-gesto">
+                    ✌️
+                </div>
+
+                <h3>
+                    Dos dedos
+                </h3>
+
+                <h4>
+                    Recta tangente
+                </h4>
+
+                <p>
+                    Muestra la recta tangente
+                    a la función en un punto.
+                </p>
+
+            </article>
+
+
+            <article class="gesto gesto3">
+
+                <div class="numero-gesto">
+                    3
+                </div>
+
+                <div class="icono-gesto">
+                    🤟
+                </div>
+
+                <h3>
+                    Tres dedos
+                </h3>
+
+                <h4>
+                    Derivada
+                </h4>
+
+                <p>
+                    Calcula y muestra la
+                    derivada de la función.
+                </p>
+
+            </article>
+
+
+            <article class="gesto gesto4">
+
+                <div class="numero-gesto">
+                    4
+                </div>
+
+                <div class="icono-gesto">
+                    🖖
+                </div>
+
+                <h3>
+                    Cuatro dedos
+                </h3>
+
+                <h4>
+                    Máximos y mínimos
+                </h4>
+
+                <p>
+                    Identifica los puntos críticos
+                    y muestra máximos y mínimos.
+                </p>
+
+            </article>
+
+
+            <article class="gesto gesto5">
+
+                <div class="numero-gesto">
+                    5
+                </div>
+
+                <div class="icono-gesto">
+                    🖐️
+                </div>
+
+                <h3>
+                    Cinco dedos
+                </h3>
+
+                <h4>
+                    Reto aplicado
+                </h4>
+
+                <p>
+                    Relaciona la función con una
+                    situación práctica.
+                </p>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        VisuMath · Cálculo en movimiento
+    </footer>
+
+
+    <!-- LIBRERÍAS -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@14.0.1/lib/browser/math.js"></script>
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
